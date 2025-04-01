@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+  role     Role   @default(USER)
+
+  tasks    Task[] @relation("UserTasks") // ✅ Back-reference to match Hibernate
+  
+  @@map("users") // ✅ Matches Spring Boot's table name
+}
+
+model Task {
+  id          Int    @id @default(autoincrement())
+  description String
+  completed   Boolean @default(false)
+  user        User   @relation("UserTasks", fields: [userId], references: [id])
+  userId      Int    @map("user_id") // ✅ Matches Spring Boot's foreign key column
+
+  @@map("tasks") // ✅ Matches Spring Boot's table name
+}
+
+enum Role {
+  ADMIN
+  USER
+}
