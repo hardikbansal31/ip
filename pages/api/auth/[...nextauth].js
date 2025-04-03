@@ -13,7 +13,7 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           const res = await axios.post(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register/api/auth/login`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
             credentials
           );
           console.log("API Login Response:", res.data); // ✅ Debug API Response
