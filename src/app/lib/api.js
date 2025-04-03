@@ -5,11 +5,11 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 // || "http://localhost:8080/api"
 
 export const registerUser = async (userData) => {
-  return axios.post(`${API_URL}/auth/register`, userData);
+  return axios.post(`${API_URL}/api/auth/register`, userData);
 };
 
 export const loginUser = async (userData) => {
-  return axios.post(`${API_URL}/auth/login`, userData);
+  return axios.post(`${API_URL}/api/auth/login`, userData);
 };
 
 const getAuthToken = () => {
@@ -20,14 +20,16 @@ const getAuthToken = () => {
 };
 
 export const assignTask = async (token, taskData) => {
-  return axios.post(`${API_URL}/tasks`, taskData, {
+  return axios.post(`${API_URL}/api/tasks`, taskData, {
     headers: { Authorization: `Bearer ${token}` },
+    mode: "cors",
   });
 };
 
 export const fetchTasks = async (token) => {
-  return axios.get(`${API_URL}/tasks`, {
+  return axios.get(`${API_URL}/api/tasks`, {
     headers: { Authorization: `Bearer ${token}` },
+    mode: "cors",
   });
 };
 
@@ -50,8 +52,9 @@ export const fetchUsers = async () => {
   }
 
   try {
-    const response = await axios.get(`${API_URL}/users`, {
+    const response = await axios.get(`${API_URL}/api/users`, {
       headers: { Authorization: `Bearer ${session.accessToken}` },
+      mode: "cors",
     });
     return response.data;
   } catch (error) {
