@@ -1,7 +1,8 @@
 import axios from "axios";
 import { getSession } from "next-auth/react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+// || "http://localhost:8080/api"
 
 export const registerUser = async (userData) => {
   return axios.post(`${API_URL}/auth/register`, userData);
