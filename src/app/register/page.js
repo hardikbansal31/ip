@@ -1,65 +1,3 @@
-// "use client";
-
-// import { useState } from "react";
-// import { useRouter } from "next/navigation";
-
-// export default function Register() {
-//   const [form, setForm] = useState({
-//     username: "",
-//     password: "",
-//     isAdmin: false,
-//   });
-//   const [error, setError] = useState("");
-//   const router = useRouter();
-
-//   const handleRegister = async (e) => {
-//     e.preventDefault();
-//     setError("");
-
-//     const res = await fetch("/api/auth/register", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(form),
-//     });
-
-//     if (res.ok) {
-//       router.push("/login");
-//     } else {
-//       const data = await res.json();
-//       setError(data.error || "Registration failed");
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Register</h1>
-//       <form onSubmit={handleRegister}>
-//         <input
-//           type="text"
-//           placeholder="Username"
-//           onChange={(e) => setForm({ ...form, username: e.target.value })}
-//           required
-//         />
-//         <input
-//           type="password"
-//           placeholder="Password"
-//           onChange={(e) => setForm({ ...form, password: e.target.value })}
-//           required
-//         />
-//         <label>
-//           <input
-//             type="checkbox"
-//             onChange={(e) => setForm({ ...form, isAdmin: e.target.checked })}
-//           />
-//           Register as Admin
-//         </label>
-//         <button type="submit">Register</button>
-//       </form>
-//       {error && <p style={{ color: "red" }}>{error}</p>}
-//     </div>
-//   );
-// }
-
 "use client";
 
 import { useState } from "react";
@@ -79,7 +17,7 @@ export default function Register() {
     setError("");
 
     const res = await fetch(
-      "https://ip-mocha-nine.vercel.app/api/auth/register",
+      "https://taskagain.onrender.com/api/auth/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
