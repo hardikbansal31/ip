@@ -1,79 +1,3 @@
-// "use client";
-
-// import { useEffect, useState } from "react";
-// import { fetchUsers, assignTask } from "../lib/api";
-// import { useSession } from "next-auth/react";
-
-// export default function Admin() {
-//   const { data: session } = useSession();
-//   const [users, setUsers] = useState([]); // ✅ Default to empty array
-//   const [task, setTask] = useState({ title: "", description: "", userId: "" });
-
-//   useEffect(() => {
-//     if (session?.accessToken) {
-//       // ✅ Check if session is valid
-//       fetchUsers(session.accessToken)
-//         .then((res) => {
-//           console.log("Fetched Users:", res); // ✅ Debugging
-//           setUsers(res || []); // ✅ Ensure `users` is always an array
-//         })
-//         .catch((err) => {
-//           console.error("Error fetching users:", err);
-//           setUsers([]); // ✅ Prevent undefined issues
-//         });
-//     }
-//   }, [session]);
-
-//   const handleAssignTask = async () => {
-//     console.log("Assigning Task with Token:", session?.accessToken);
-//     console.log("Task Data:", task);
-//     if (!session?.accessToken) {
-//       console.error("No authentication token found");
-//       return;
-//     }
-
-//     try {
-//       const response = await assignTask(session.accessToken, task);
-//       console.log("Task Assigned:", response.data);
-//     } catch (error) {
-//       console.error(
-//         "Error assigning task:",
-//         error.response?.data || error.message
-//       );
-//     }
-//   };
-
-
-//   return (
-//     <div>
-//       <h1>Admin Dashboard</h1>
-//       <select onChange={(e) => setTask({ ...task, userId: e.target.value })}>
-//         <option value="">Select User</option>
-//         {users.length > 0 ? ( // ✅ Check before mapping
-//           users.map((user) => (
-//             <option key={user.id} value={user.id}>
-//               {user.username || user.name || "Unknown User"}
-//             </option>
-//           ))
-//         ) : (
-//           <option disabled>No users found</option>
-//         )}
-//       </select>
-//       <input
-//         type="text"
-//         placeholder="Task Title"
-//         onChange={(e) => setTask({ ...task, title: e.target.value })}
-//       />
-//       <input
-//         type="text"
-//         placeholder="Task Description"
-//         onChange={(e) => setTask({ ...task, description: e.target.value })}
-//       />
-//       <button onClick={handleAssignTask}>Assign Task</button>
-//     </div>
-//   );
-// }
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -82,14 +6,14 @@ import { useSession } from "next-auth/react";
 
 export default function Admin() {
   const { data: session } = useSession();
-  const [users, setUsers] = useState([]); // ✅ Ensure users is always an array
+  const [users, setUsers] = useState([]); 
   const [taskDescriptions, setTaskDescriptions] = useState({}); // Store descriptions per user
 
   useEffect(() => {
     if (session?.accessToken) {
       fetchUsers(session.accessToken)
         .then((res) => {
-          setUsers(res || []); // ✅ Prevent undefined errors
+          setUsers(res || []); 
         })
         .catch((err) => {
           console.error("Error fetching users:", err);
@@ -98,7 +22,6 @@ export default function Admin() {
     }
   }, [session]);
 
-  // Handle input change for each user
   const handleInputChange = (userId, value) => {
     setTaskDescriptions((prev) => ({ ...prev, [userId]: value }));
   };

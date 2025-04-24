@@ -13,17 +13,17 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           const res = await axios.post(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+            "https://ip-mocha-nine.vercel.app/api/auth/login",
             credentials
           );
-          console.log("API Login Response:", res.data); // ✅ Debug API Response
+          console.log("API Login Response:", res.data);
 
           const user = res.data;
 
           if (user && user.token && user.username) {
             return {
               token: user.token,
-              username: user.username, // ✅ Ensure username is included
+              username: user.username,
             };
           }
           return null;
@@ -39,13 +39,13 @@ export const authOptions = {
       if (user) {
         token.accessToken = user.token;
         token.username = user.username;
-        console.log("Updated JWT Token:", token); // ✅ Ensure username is stored
+        console.log("Updated JWT Token:", token);
       }
       return token;
     },
     async session({ session, token }) {
       session.accessToken = token.accessToken;
-      session.user = { username: token.username }; // ✅ Explicitly set username
+      session.user = { username: token.username };
       console.log("Updated Session Data:", session);
       return session;
     },

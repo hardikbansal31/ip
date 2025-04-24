@@ -20,16 +20,14 @@ const getAuthToken = () => {
 };
 
 export const assignTask = async (token, taskData) => {
-  return axios.post(`${API_URL}/api/tasks`, taskData, {
+  return axios.post(`${API_URL}/tasks`, taskData, {
     headers: { Authorization: `Bearer ${token}` },
-    mode: "cors",
   });
 };
 
 export const fetchTasks = async (token) => {
-  return axios.get(`${API_URL}/api/tasks`, {
+  return axios.get(`${API_URL}/tasks`, {
     headers: { Authorization: `Bearer ${token}` },
-    mode: "cors",
   });
 };
 
@@ -52,9 +50,8 @@ export const fetchUsers = async () => {
   }
 
   try {
-    const response = await axios.get(`${API_URL}/api/users`, {
+    const response = await axios.get(`${API_URL}/users`, {
       headers: { Authorization: `Bearer ${session.accessToken}` },
-      mode: "cors",
     });
     return response.data;
   } catch (error) {
