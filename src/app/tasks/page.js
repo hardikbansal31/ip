@@ -124,7 +124,7 @@ export default function Tasks() {
           <strong className="text-white">{session.user.username}</strong>!
         </p>
       ) : (
-        <p className="text-gray-400">Loading user info...</p>
+        <p className="text-gray-400">Loading user info... (may take time cause im using free tier)</p>
       )}
 
       <div className="overflow-x-auto">

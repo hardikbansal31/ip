@@ -53,7 +53,7 @@ export default function Admin() {
       <h1 className="text-2xl font-semibold mb-6 text-wheat">Assign Tasks</h1>
 
       {users.length === 0 ? (
-        <p className="text-gray-400">Loading users...</p>
+        <p className="text-gray-400">Loading users... (may take time cause im using free tier)</p>
       ) : (
         // <table className="w-full border border-gray-700 text-wheat">
         //   <thead>
